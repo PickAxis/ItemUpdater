@@ -1,0 +1,4 @@
+name: ItemUpdater
+version: ${project.version}
+authors: [PickAxis, NickG365]
+main: com.pickaxis.itemupdater.ItemUpdaterPlugin
