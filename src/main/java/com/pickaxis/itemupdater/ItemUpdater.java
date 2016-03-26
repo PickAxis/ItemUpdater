@@ -2,7 +2,6 @@ package com.pickaxis.itemupdater;
 
 import java.lang.reflect.Field;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 import lombok.AccessLevel;
 import lombok.Getter;
 import net.minecraft.server.v1_9_R1.DataConverterPotionId;
@@ -69,7 +68,7 @@ public class ItemUpdater
         }
         catch( IllegalAccessException | IllegalArgumentException | SecurityException ex )
         {
-            Logger.getLogger( ItemUpdaterListener.class.getName() ).log( Level.SEVERE, null, ex );
+            ItemUpdaterPlugin.getInstance().getLogger().log( Level.SEVERE, null, ex );
         }
         
         return true;
