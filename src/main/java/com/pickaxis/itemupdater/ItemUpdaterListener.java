@@ -30,6 +30,12 @@ public class ItemUpdaterListener implements Listener
     @EventHandler
     public void onInventoryClick( InventoryClickEvent event )
     {
+        if( event.getCurrentItem() == null )
+        {
+            ItemUpdaterPlugin.getInstance().debug( "Current item in InventoryClickEvent was null." );
+            return;
+        }
+        
         ItemUpdaterPlugin.getInstance().getUpdater().updateItem( event.getCurrentItem() );
     }
 }
