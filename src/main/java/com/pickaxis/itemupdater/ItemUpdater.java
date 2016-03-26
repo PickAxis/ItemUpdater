@@ -32,9 +32,11 @@ public class ItemUpdater
     }
     
     /**
-     * Updates an ItemStack.
+     * Updates an ItemStack.  Will not be attempted if the item is not
+     * a potion or spawn egg, or if it's durability is already 0.
      * 
      * @param i The ItemStack to update.
+     * @return Whether the update was attempted.
      */
     public boolean updateItem( ItemStack i )
     {
