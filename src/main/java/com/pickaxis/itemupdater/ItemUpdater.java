@@ -37,11 +37,11 @@ public class ItemUpdater
      * 
      * @param i The ItemStack to update.
      */
-    public void updateItem( ItemStack i )
+    public boolean updateItem( ItemStack i )
     {
         if( i.getDurability() == 0 || !( i.getType() == Material.POTION || i.getType() == Material.MONSTER_EGG ) )
         {
-            return;
+            return false;
         }
         
         try
@@ -71,6 +71,8 @@ public class ItemUpdater
         {
             Logger.getLogger( ItemUpdaterListener.class.getName() ).log( Level.SEVERE, null, ex );
         }
+        
+        return true;
     }
     
     /**
@@ -81,19 +83,20 @@ public class ItemUpdater
     public void updateInventory( Inventory inv )
     {
         long startTime = System.nanoTime();
+        boolean updated = false;
         
         for( ItemStack i : inv.getContents() )
         {
             if( i != null )
             {
-                this.updateItem( i );
+                updated = this.updateItem( i ) || updated;
             }
         }
         
-        if( ItemUpdaterPlugin.getInstance().isDebug() )
+        if( ItemUpdaterPlugin.getInstance().isDebug() && updated )
         {
             ItemUpdaterPlugin.getInstance().getLogger().log( Level.INFO, "{0} updated in {1}ns.", new Object[]{ inv.toString(), 
-                                                                                                    System.nanoTime() - startTime } );
+                                                                                                                System.nanoTime() - startTime } );
         }
     }
 }
